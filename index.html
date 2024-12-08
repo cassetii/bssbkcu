@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AC Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>AC Management System</h1>
+  </header>
+  <main>
+    <form id="acForm">
+      <h2>Input Data Unit AC</h2>
+      <label for="office">Kantor Fungsional</label>
+      <select id="office" name="office" required>
+        <option value="">Pilih Kantor</option>
+        <option>Samsat Mappa</option>
+        <option>Gubernur</option>
+        <option>Maccini</option>
+        <option>PU</option>
+        <option>Diknas</option>
+        <option>Lab Baji</option>
+        <option>Talasalapang</option>
+        <option>IPDN</option>
+        <option>RS Haji</option>
+        <option>DPRD</option>
+        <option>BKPMD</option>
+        <option>Pettarani</option>
+        <option>Balaikota</option>
+        <option>Priority</option>
+        <option>RSKD Dadi</option>
+        <option>Samsat Sudiang</option>
+      </select>
+
+      <label for="unit">Unit AC (Multiple)</label>
+      <textarea id="unit" name="unit" placeholder="Kapasitas, Tipe Freon, Model" required></textarea>
+
+      <label for="address">Alamat</label>
+      <textarea id="address" name="address" placeholder="Masukkan alamat" required></textarea>
+
+      <button type="submit">Tambah Data</button>
+    </form>
+
+    <section id="summary">
+      <h2>Summary Data</h2>
+      <input type="text" id="search" placeholder="Cari data...">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Kantor</th>
+            <th>Unit AC</th>
+            <th>Alamat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="summaryBody"></tbody>
+      </table>
+    </section>
+  </main>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
