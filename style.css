@@ -1,113 +1,1711 @@
-/* Color Palette */
-:root {
-    --primary-green: #8ac01e;
-    --dark-blue: #001e51;
-    --accent-blue: #537bbb;
-    --white: #ffffff;
-    --light-gray: #f4f4f4;
-    --gray: #dddddd;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--light-gray);
-  }
-  
-  header {
-    background-color: var(--dark-blue);
-    color: var(--white);
-    padding: 20px;
-    text-align: center;
-  }
-  
-  header h1 {
-    font-size: 2rem;
-    color: var(--primary-green);
-  }
-  
-  main {
-    padding: 20px;
-  }
-  
-  form {
-    background-color: var(--white);
-    padding: 20px;
-    border: 1px solid var(--gray);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  form h2 {
-    color: var(--dark-blue);
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: var(--dark-blue);
-  }
-  
-  input, textarea, select, button {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid var(--gray);
-    border-radius: 5px;
-  }
-  
-  input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: var(--primary-green);
-    box-shadow: 0 0 5px rgba(138, 192, 30, 0.5);
-  }
-  
-  button {
-    background-color: var(--primary-green);
-    color: var(--white);
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: var(--dark-blue);
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: var(--white);
-    border: 1px solid var(--gray);
-  }
-  
-  th, td {
-    border: 1px solid var(--gray);
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: var(--accent-blue);
-    color: var(--white);
-  }
-  
-  input#search {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid var(--gray);
-    width: 100%;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
-  }
-  
-  input#search:focus {
-    border-color: var(--primary-green);
-    box-shadow: 0 0 5px rgba(138, 192, 30, 0.5);
-  }
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Monitoring System - Bank Sulselbar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Blue-Green Professional Color Palette */
+            --primary-blue: #1e40af;
+            --secondary-blue: #2563eb;
+            --light-blue: #3b82f6;
+            --primary-green: #059669;
+            --secondary-green: #10b981;
+            --light-green: #34d399;
+            --accent-teal: #0d9488;
+            --warning-amber: #f59e0b;
+            --danger-red: #dc2626;
+            --dark-slate: #1e293b;
+            --medium-slate: #475569;
+            --light-slate: #64748b;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e40af 0%, #059669 50%, #0d9488 100%);
+            min-height: 100vh;
+            color: var(--dark-slate);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* HEADER STYLES */
+        header {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-teal), var(--primary-green));
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .bank-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header-text p {
+            color: var(--medium-slate);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .stat-card.total::before { background: var(--secondary-blue); }
+        .stat-card.rumah::before { background: var(--secondary-green); }
+        .stat-card.kantor::before { background: var(--accent-teal); }
+        .stat-card.maintenance::before { background: var(--warning-amber); }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-card.total i { color: var(--secondary-blue); }
+        .stat-card.rumah i { color: var(--secondary-green); }
+        .stat-card.kantor i { color: var(--accent-teal); }
+        .stat-card.maintenance i { color: var(--warning-amber); }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            color: var(--medium-slate);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .data-section, .form-section {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--dark-slate);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* SEARCH AND FILTERS */
+        .search-filter-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: var(--gray-50);
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            background: var(--white);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-slate);
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            background: var(--gray-50);
+            color: var(--dark-slate);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            background: var(--white);
+        }
+
+        /* TABLE STYLES */
+        .table-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            color: var(--white);
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background: var(--gray-50);
+            transition: background-color 0.3s ease;
+        }
+
+        /* STATUS BADGES */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-normal {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary-green);
+        }
+
+        .status-maintenance {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--danger-red);
+        }
+
+        .status-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-amber);
+        }
+
+        .location-tag {
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .location-rumah {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary-green);
+        }
+
+        .location-kantor {
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--accent-teal);
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-edit {
+            background: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .btn-delete {
+            background: var(--danger-red);
+            color: var(--white);
+        }
+
+        .btn-status {
+            background: var(--accent-teal);
+            color: var(--white);
+        }
+
+        .btn-history {
+            background: var(--secondary-green);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: var(--white);
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            min-width: 200px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* FORM STYLES */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-slate);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 14px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--gray-50);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .ac-count-container {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .ac-count-container.show {
+            display: block;
+        }
+
+        /* MODAL STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-slate);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--medium-slate);
+            transition: color 0.3s ease;
+            padding: 5px;
+        }
+
+        .close-btn:hover {
+            color: var(--danger-red);
+        }
+
+        .modal-form .form-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* HISTORY STYLES */
+        .history-item {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: var(--gray-100);
+            transform: translateX(5px);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .history-action {
+            font-weight: 700;
+            color: var(--dark-slate);
+            font-size: 1rem;
+        }
+
+        .history-date {
+            color: var(--medium-slate);
+            font-size: 0.9rem;
+            background: var(--white);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .history-description {
+            color: var(--dark-slate);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .history-changes {
+            color: var(--medium-slate);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            background: var(--white);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--gray-200);
+        }
+
+        /* UTILITY CLASSES */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--medium-slate);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--gray-200);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--medium-slate);
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            z-index: 1001;
+            box-shadow: var(--shadow-xl);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: var(--secondary-green);
+        }
+
+        .notification.error {
+            background: var(--danger-red);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-filter-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .history-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="header-content">
+                <div class="bank-logo">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="header-text">
+                    <h1>ATM Monitoring System</h1>
+                    <p>Bank Sulawesi Selatan dan Barat</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- STATISTICS CARDS -->
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <i class="fas fa-credit-card"></i>
+                <div class="number" id="totalATMs">0</div>
+                <div class="label">Total ATM</div>
+            </div>
+            <div class="stat-card rumah">
+                <i class="fas fa-home"></i>
+                <div class="number" id="rumahATMs">0</div>
+                <div class="label">Rumah ATM</div>
+            </div>
+            <div class="stat-card kantor">
+                <i class="fas fa-building"></i>
+                <div class="number" id="kantorATMs">0</div>
+                <div class="label">Kantor Fungsional</div>
+            </div>
+            <div class="stat-card maintenance">
+                <i class="fas fa-tools"></i>
+                <div class="number" id="maintenanceATMs">0</div>
+                <div class="label">Perlu Maintenance</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- DATA TABLE SECTION -->
+            <div class="data-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-list"></i>
+                        Data ATM & Kondisi AC
+                    </h2>
+                    <div class="search-filter-container">
+                        <div class="search-box">
+                            <input type="text" id="search" placeholder="Cari berdasarkan lokasi, alamat, atau status...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <select class="filter-select" id="locationFilter">
+                            <option value="">Semua Lokasi</option>
+                            <option value="Rumah ATM">Rumah ATM</option>
+                            <option value="Kantor Fungsional">Kantor Fungsional</option>
+                        </select>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">Semua Status</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Warning">Warning</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-map-marker-alt"></i> Lokasi</th>
+                                <th><i class="fas fa-building"></i> Kantor</th>
+                                <th><i class="fas fa-home"></i> Alamat</th>
+                                <th><i class="fas fa-snowflake"></i> Jumlah AC</th>
+                                <th><i class="fas fa-thermometer-half"></i> Type Freon</th>
+                                <th><i class="fas fa-chart-line"></i> Status AC</th>
+                                <th><i class="fas fa-calendar"></i> Terakhir Cek</th>
+                                <th><i class="fas fa-cogs"></i> Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="atmTableBody">
+                            <tr>
+                                <td colspan="8" class="loading">
+                                    <i class="fas fa-spinner"></i><br>
+                                    Memuat data ATM...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FORM INPUT SECTION -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-plus-circle"></i>
+                    Input Data ATM Baru
+                </h2>
+                <form id="atmForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="lokasi">
+                                <i class="fas fa-map-marker-alt"></i> Jenis Lokasi
+                            </label>
+                            <select id="lokasi" name="lokasi" required>
+                                <option value="">Pilih Jenis Lokasi</option>
+                                <option value="Rumah ATM">Rumah ATM</option>
+                                <option value="Kantor Fungsional">Kantor Fungsional</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="kantorGroup" style="display: none;">
+                            <label for="namaKantor">
+                                <i class="fas fa-building"></i> Nama Kantor
+                            </label>
+                            <select id="namaKantor" name="namaKantor">
+                                <option value="">Pilih Kantor</option>
+                                <option value="Samsat Mappa">Samsat Mappa</option>
+                                <option value="Gubernur">Gubernur</option>
+                                <option value="Maccini">Maccini</option>
+                                <option value="PU">PU</option>
+                                <option value="Diknas">Diknas</option>
+                                <option value="Lab Baji">Lab Baji</option>
+                                <option value="Talasalapang">Talasalapang</option>
+                                <option value="IPDN">IPDN</option>
+                                <option value="RS Haji">RS Haji</option>
+                                <option value="DPRD">DPRD</option>
+                                <option value="BKPMD">BKPMD</option>
+                                <option value="Pettarani">Pettarani</option>
+                                <option value="Balaikota">Balaikota</option>
+                                <option value="Priority">Priority</option>
+                                <option value="RSKD Dadi">RSKD Dadi</option>
+                                <option value="Samsat Sudiang">Samsat Sudiang</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat">
+                                <i class="fas fa-home"></i> Alamat Lengkap
+                            </label>
+                            <textarea id="alamat" name="alamat" placeholder="Masukkan alamat lengkap lokasi ATM..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jumlahAC">
+                                <i class="fas fa-snowflake"></i> Jumlah Unit AC
+                            </label>
+                            <select id="jumlahAC" name="jumlahAC" required>
+                                <option value="">Pilih Jumlah AC</option>
+                                <option value="1">1 Unit</option>
+                                <option value="2">2 Unit</option>
+                                <option value="3">3 Unit</option>
+                                <option value="4">4 Unit</option>
+                                <option value="5">5+ Unit</option>
+                            </select>
+                            <div class="ac-count-container" id="customACCount">
+                                <label for="customCount">Jumlah AC Spesifik:</label>
+                                <input type="number" id="customCount" name="customCount" min="5" max="20" placeholder="Masukkan jumlah AC">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="typeFreon">
+                                <i class="fas fa-thermometer-half"></i> Type Freon
+                            </label>
+                            <select id="typeFreon" name="typeFreon" required>
+                                <option value="">Pilih Type Freon</option>
+                                <option value="R32">R32 (Ramah Lingkungan)</option>
+                                <option value="R410A">R410A (Standar)</option>
+                                <option value="R22">R22 (Lama)</option>
+                                <option value="Mixed">Campuran (Multi Type)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="statusAC">
+                                <i class="fas fa-chart-line"></i> Status Kondisi AC
+                            </label>
+                            <select id="statusAC" name="statusAC" required>
+                                <option value="">Pilih Status</option>
+                                <option value="Normal">Normal - Berfungsi Baik</option>
+                                <option value="Warning">Warning - Perlu Perhatian</option>
+                                <option value="Maintenance">Maintenance - Perlu Perbaikan</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keterangan">
+                                <i class="fas fa-sticky-note"></i> Keterangan Tambahan
+                            </label>
+                            <textarea id="keterangan" name="keterangan" placeholder="Catatan kondisi, masalah, atau informasi tambahan..." rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i>
+                        Simpan Data ATM
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MODAL -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-edit"></i>
+                    Edit Data ATM
+                </h3>
+                <button class="close-btn" onclick="closeModal('editModal')">&times;</button>
+            </div>
+            <form id="editForm" class="modal-form">
+                <input type="hidden" id="editId" name="editId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="editLokasi">
+                            <i class="fas fa-map-marker-alt"></i> Jenis Lokasi
+                        </label>
+                        <select id="editLokasi" name="editLokasi" required>
+                            <option value="Rumah ATM">Rumah ATM</option>
+                            <option value="Kantor Fungsional">Kantor Fungsional</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="editKantorGroup">
+                        <label for="editNamaKantor">
+                            <i class="fas fa-building"></i> Nama Kantor
+                        </label>
+                        <select id="editNamaKantor" name="editNamaKantor">
+                            <option value="">Pilih Kantor</option>
+                            <option value="Samsat Mappa">Samsat Mappa</option>
+                            <option value="Gubernur">Gubernur</option>
+                            <option value="Maccini">Maccini</option>
+                            <option value="PU">PU</option>
+                            <option value="Diknas">Diknas</option>
+                            <option value="Lab Baji">Lab Baji</option>
+                            <option value="Talasalapang">Talasalapang</option>
+                            <option value="IPDN">IPDN</option>
+                            <option value="RS Haji">RS Haji</option>
+                            <option value="DPRD">DPRD</option>
+                            <option value="BKPMD">BKPMD</option>
+                            <option value="Pettarani">Pettarani</option>
+                            <option value="Balaikota">Balaikota</option>
+                            <option value="Priority">Priority</option>
+                            <option value="RSKD Dadi">RSKD Dadi</option>
+                            <option value="Samsat Sudiang">Samsat Sudiang</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editAlamat">
+                            <i class="fas fa-home"></i> Alamat Lengkap
+                        </label>
+                        <textarea id="editAlamat" name="editAlamat" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editJumlahAC">
+                            <i class="fas fa-snowflake"></i> Jumlah Unit AC
+                        </label>
+                        <select id="editJumlahAC" name="editJumlahAC" required>
+                            <option value="1">1 Unit</option>
+                            <option value="2">2 Unit</option>
+                            <option value="3">3 Unit</option>
+                            <option value="4">4 Unit</option>
+                            <option value="5">5+ Unit</option>
+                        </select>
+                        <div class="ac-count-container" id="editCustomACCount">
+                            <label for="editCustomCount">Jumlah AC Spesifik:</label>
+                            <input type="number" id="editCustomCount" name="editCustomCount" min="5" max="20" placeholder="Masukkan jumlah AC">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editTypeFreon">
+                            <i class="fas fa-thermometer-half"></i> Type Freon
+                        </label>
+                        <select id="editTypeFreon" name="editTypeFreon" required>
+                            <option value="R32">R32 (Ramah Lingkungan)</option>
+                            <option value="R410A">R410A (Standar)</option>
+                            <option value="R22">R22 (Lama)</option>
+                            <option value="Mixed">Campuran (Multi Type)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editStatusAC">
+                            <i class="fas fa-chart-line"></i> Status Kondisi AC
+                        </label>
+                        <select id="editStatusAC" name="editStatusAC" required>
+                            <option value="Normal">Normal - Berfungsi Baik</option>
+                            <option value="Warning">Warning - Perlu Perhatian</option>
+                            <option value="Maintenance">Maintenance - Perlu Perbaikan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editKeterangan">
+                            <i class="fas fa-sticky-note"></i> Keterangan Tambahan
+                        </label>
+                        <textarea id="editKeterangan" name="editKeterangan" placeholder="Catatan kondisi, masalah, atau informasi tambahan..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-save"></i>
+                    Update Data ATM
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- STATUS UPDATE MODAL -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-sync"></i>
+                    Update Status AC
+                </h3>
+                <button class="close-btn" onclick="closeModal('statusModal')">&times;</button>
+            </div>
+            <form id="statusForm" class="modal-form">
+                <input type="hidden" id="statusId" name="statusId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="newStatus">
+                            <i class="fas fa-chart-line"></i> Status Baru
+                        </label>
+                        <select id="newStatus" name="newStatus" required>
+                            <option value="Normal">Normal - Berfungsi Baik</option>
+                            <option value="Warning">Warning - Perlu Perhatian</option>
+                            <option value="Maintenance">Maintenance - Perlu Perbaikan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="statusKeterangan">
+                            <i class="fas fa-comment"></i> Keterangan Perubahan
+                        </label>
+                        <textarea id="statusKeterangan" name="statusKeterangan" placeholder="Jelaskan alasan perubahan status..." required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-check"></i>
+                    Update Status
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HISTORY MODAL -->
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-history"></i>
+                    Riwayat Perubahan ATM
+                </h3>
+                <button class="close-btn" onclick="closeModal('historyModal')">&times;</button>
+            </div>
+            <div id="historyContent">
+                <!-- History will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // =============================================
+        // DATA MANAGEMENT
+        // =============================================
+        let atmData = JSON.parse(localStorage.getItem('atmData')) || [];
+        let historyData = JSON.parse(localStorage.getItem('historyData')) || [];
+        let allData = [...atmData];
+
+        // =============================================
+        // INITIALIZATION
+        // =============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            renderData(allData);
+            updateStats();
+            loadSampleData();
+        });
+
+        function setupEventListeners() {
+            // Form submissions
+            document.getElementById('atmForm').addEventListener('submit', handleFormSubmit);
+            document.getElementById('editForm').addEventListener('submit', handleEditSubmit);
+            document.getElementById('statusForm').addEventListener('submit', handleStatusSubmit);
+            
+            // Search and filters
+            document.getElementById('search').addEventListener('input', handleSearch);
+            document.getElementById('locationFilter').addEventListener('change', handleFilter);
+            document.getElementById('statusFilter').addEventListener('change', handleFilter);
+            
+            // Form change handlers
+            document.getElementById('lokasi').addEventListener('change', handleLokasiChange);
+            document.getElementById('editLokasi').addEventListener('change', handleEditLokasiChange);
+            document.getElementById('jumlahAC').addEventListener('change', handleACCountChange);
+            document.getElementById('editJumlahAC').addEventListener('change', handleEditACCountChange);
+        }
+
+        // =============================================
+        // FORM HANDLERS
+        // =============================================
+        function handleLokasiChange(e) {
+            const kantorGroup = document.getElementById('kantorGroup');
+            const jumlahACSelect = document.getElementById('jumlahAC');
+            const customACContainer = document.getElementById('customACCount');
+            
+            if (e.target.value === 'Rumah ATM') {
+                kantorGroup.style.display = 'none';
+                document.getElementById('namaKantor').required = false;
+                jumlahACSelect.value = '1';
+                jumlahACSelect.disabled = true;
+                customACContainer.classList.remove('show');
+            } else if (e.target.value === 'Kantor Fungsional') {
+                kantorGroup.style.display = 'block';
+                document.getElementById('namaKantor').required = true;
+                jumlahACSelect.disabled = false;
+                jumlahACSelect.value = '';
+            } else {
+                kantorGroup.style.display = 'none';
+                document.getElementById('namaKantor').required = false;
+                jumlahACSelect.disabled = false;
+            }
+        }
+
+        function handleEditLokasiChange(e) {
+            const editKantorGroup = document.getElementById('editKantorGroup');
+            const editJumlahACSelect = document.getElementById('editJumlahAC');
+            const editCustomACContainer = document.getElementById('editCustomACCount');
+            
+            if (e.target.value === 'Rumah ATM') {
+                editKantorGroup.style.display = 'none';
+                document.getElementById('editNamaKantor').required = false;
+                editJumlahACSelect.value = '1';
+                editJumlahACSelect.disabled = true;
+                editCustomACContainer.classList.remove('show');
+            } else {
+                editKantorGroup.style.display = 'block';
+                document.getElementById('editNamaKantor').required = true;
+                editJumlahACSelect.disabled = false;
+            }
+        }
+
+        function handleACCountChange(e) {
+            const customACContainer = document.getElementById('customACCount');
+            if (e.target.value === '5') {
+                customACContainer.classList.add('show');
+            } else {
+                customACContainer.classList.remove('show');
+            }
+        }
+
+        function handleEditACCountChange(e) {
+            const editCustomACContainer = document.getElementById('editCustomACCount');
+            if (e.target.value === '5') {
+                editCustomACContainer.classList.add('show');
+            } else {
+                editCustomACContainer.classList.remove('show');
+            }
+        }
+
+        // =============================================
+        // FORM SUBMISSIONS
+        // =============================================
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Handle custom AC count
+            if (data.jumlahAC === '5' && data.customCount) {
+                data.jumlahAC = data.customCount;
+            }
+            
+            // Add metadata
+            data.id = Date.now().toString();
+            data.createdAt = new Date().toISOString();
+            data.lastChecked = new Date().toLocaleDateString('id-ID');
+            
+            // Save data
+            atmData.push(data);
+            allData = [...atmData];
+            localStorage.setItem('atmData', JSON.stringify(atmData));
+            
+            // Add to history
+            addToHistory(data.id, 'create', 'Data ATM baru ditambahkan', data);
+            
+            // Update UI
+            renderData(allData);
+            updateStats();
+            showNotification('Data ATM berhasil ditambahkan!', 'success');
+            
+            // Reset form
+            e.target.reset();
+            document.getElementById('kantorGroup').style.display = 'none';
+            document.getElementById('jumlahAC').disabled = false;
+            document.getElementById('customACCount').classList.remove('show');
+        }
+
+        function handleEditSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            const id = data.editId;
+            
+            const oldData = atmData.find(atm => atm.id === id);
+            
+            // Handle custom AC count for edit
+            if (data.editJumlahAC === '5' && data.editCustomCount) {
+                data.editJumlahAC = data.editCustomCount;
+            }
+            
+            // Update data
+            const index = atmData.findIndex(atm => atm.id === id);
+            atmData[index] = {
+                ...oldData,
+                lokasi: data.editLokasi,
+                namaKantor: data.editNamaKantor || '',
+                alamat: data.editAlamat,
+                jumlahAC: data.editJumlahAC,
+                typeFreon: data.editTypeFreon,
+                statusAC: data.editStatusAC,
+                keterangan: data.editKeterangan || '',
+                lastChecked: new Date().toLocaleDateString('id-ID')
+            };
+
+            allData = [...atmData];
+            localStorage.setItem('atmData', JSON.stringify(atmData));
+            
+            // Add to history
+            addToHistory(id, 'edit', 'Data ATM diperbarui', atmData[index], oldData);
+            
+            // Update UI
+            renderData(allData);
+            updateStats();
+            closeModal('editModal');
+            showNotification('Data ATM berhasil diperbarui!', 'success');
+        }
+
+        function handleStatusSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            const id = data.statusId;
+            
+            const oldData = atmData.find(atm => atm.id === id);
+            
+            // Update status
+            const index = atmData.findIndex(atm => atm.id === id);
+            atmData[index] = {
+                ...oldData,
+                statusAC: data.newStatus,
+                keterangan: data.statusKeterangan,
+                lastChecked: new Date().toLocaleDateString('id-ID')
+            };
+
+            allData = [...atmData];
+            localStorage.setItem('atmData', JSON.stringify(atmData));
+            
+            // Add to history
+            addToHistory(id, 'status', `Status diubah ke ${data.newStatus}`, atmData[index], oldData);
+            
+            // Update UI
+            renderData(allData);
+            updateStats();
+            closeModal('statusModal');
+            showNotification('Status ATM berhasil diperbarui!', 'success');
+        }
+
+        // =============================================
+        // SEARCH AND FILTER
+        // =============================================
+        function handleSearch() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const locationFilter = document.getElementById('locationFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            filterData(searchTerm, locationFilter, statusFilter);
+        }
+
+        function handleFilter() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const locationFilter = document.getElementById('locationFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            filterData(searchTerm, locationFilter, statusFilter);
+        }
+
+        function filterData(searchTerm, locationFilter, statusFilter) {
+            let filteredData = allData.filter(item => {
+                const matchesSearch = searchTerm === '' || 
+                    item.lokasi.toLowerCase().includes(searchTerm) ||
+                    item.alamat.toLowerCase().includes(searchTerm) ||
+                    item.statusAC.toLowerCase().includes(searchTerm) ||
+                    item.typeFreon.toLowerCase().includes(searchTerm) ||
+                    (item.namaKantor && item.namaKantor.toLowerCase().includes(searchTerm));
+                
+                const matchesLocation = locationFilter === '' || item.lokasi === locationFilter;
+                const matchesStatus = statusFilter === '' || item.statusAC === statusFilter;
+                
+                return matchesSearch && matchesLocation && matchesStatus;
+            });
+            
+            renderData(filteredData);
+        }
+
+        // =============================================
+        // DATA RENDERING
+        // =============================================
+        function renderData(data) {
+            const tableBody = document.getElementById('atmTableBody');
+            
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="empty-state">
+                            <i class="fas fa-credit-card"></i><br>
+                            Belum ada data ATM yang tersimpan
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = data.map(item => `
+                <tr>
+                    <td>
+                        <span class="location-tag ${item.lokasi === 'Rumah ATM' ? 'location-rumah' : 'location-kantor'}">
+                            ${item.lokasi}
+                        </span>
+                    </td>
+                    <td>${item.namaKantor || '-'}</td>
+                    <td>${item.alamat}</td>
+                    <td><strong>${item.jumlahAC}</strong> Unit</td>
+                    <td>
+                        <span style="font-weight: 600; color: var(--primary-blue);">
+                            ${item.typeFreon}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${item.statusAC.toLowerCase()}">
+                            ${item.statusAC}
+                        </span>
+                    </td>
+                    <td>${item.lastChecked}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-edit" onclick="openEditModal('${item.id}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-status" onclick="openStatusModal('${item.id}')">
+                                <i class="fas fa-sync"></i> Status
+                            </button>
+                            <button class="btn btn-history" onclick="openHistoryModal('${item.id}')">
+                                <i class="fas fa-history"></i> Riwayat
+                            </button>
+                            <button class="btn btn-delete" onclick="deleteATM('${item.id}')">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateStats() {
+            const total = atmData.length;
+            const rumah = atmData.filter(item => item.lokasi === 'Rumah ATM').length;
+            const kantor = atmData.filter(item => item.lokasi === 'Kantor Fungsional').length;
+            const maintenance = atmData.filter(item => item.statusAC === 'Maintenance').length;
+
+            document.getElementById('totalATMs').textContent = total;
+            document.getElementById('rumahATMs').textContent = rumah;
+            document.getElementById('kantorATMs').textContent = kantor;
+            document.getElementById('maintenanceATMs').textContent = maintenance;
+        }
+
+        // =============================================
+        // MODAL FUNCTIONS
+        // =============================================
+        window.openEditModal = function(id) {
+            const item = atmData.find(atm => atm.id === id);
+            if (!item) return;
+
+            // Populate form fields
+            document.getElementById('editId').value = id;
+            document.getElementById('editLokasi').value = item.lokasi;
+            document.getElementById('editNamaKantor').value = item.namaKantor || '';
+            document.getElementById('editAlamat').value = item.alamat;
+            document.getElementById('editJumlahAC').value = item.jumlahAC;
+            document.getElementById('editTypeFreon').value = item.typeFreon;
+            document.getElementById('editStatusAC').value = item.statusAC;
+            document.getElementById('editKeterangan').value = item.keterangan || '';
+
+            // Handle kantor group visibility
+            const editKantorGroup = document.getElementById('editKantorGroup');
+            const editCustomACContainer = document.getElementById('editCustomACCount');
+            
+            if (item.lokasi === 'Kantor Fungsional') {
+                editKantorGroup.style.display = 'block';
+                document.getElementById('editNamaKantor').required = true;
+                document.getElementById('editJumlahAC').disabled = false;
+            } else {
+                editKantorGroup.style.display = 'none';
+                document.getElementById('editNamaKantor').required = false;
+                document.getElementById('editJumlahAC').disabled = true;
+            }
+
+            // Handle custom AC count
+            if (item.jumlahAC > 4) {
+                document.getElementById('editJumlahAC').value = '5';
+                document.getElementById('editCustomCount').value = item.jumlahAC;
+                editCustomACContainer.classList.add('show');
+            } else {
+                editCustomACContainer.classList.remove('show');
+            }
+
+            document.getElementById('editModal').classList.add('show');
+        };
+
+        window.openStatusModal = function(id) {
+            const item = atmData.find(atm => atm.id === id);
+            if (!item) return;
+
+            document.getElementById('statusId').value = id;
+            document.getElementById('newStatus').value = item.statusAC;
+            document.getElementById('statusKeterangan').value = '';
+
+            document.getElementById('statusModal').classList.add('show');
+        };
+
+        window.openHistoryModal = function(id) {
+            const item = atmData.find(atm => atm.id === id);
+            const history = historyData.filter(h => h.atmId === id).reverse(); // Latest first
+            const historyContent = document.getElementById('historyContent');
+
+            if (history.length === 0) {
+                historyContent.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i><br>
+                        <h3>Belum ada riwayat perubahan</h3>
+                        <p>Data ATM ini belum pernah mengalami perubahan</p>
+                    </div>
+                `;
+            } else {
+                // Add ATM info header
+                historyContent.innerHTML = `
+                    <div style="background: var(--gray-100); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <h4 style="color: var(--dark-slate); margin-bottom: 10px;">
+                            <i class="fas fa-info-circle"></i> Informasi ATM
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.9rem;">
+                            <div><strong>Lokasi:</strong> ${item.lokasi}</div>
+                            <div><strong>Kantor:</strong> ${item.namaKantor || '-'}</div>
+                            <div><strong>Alamat:</strong> ${item.alamat}</div>
+                            <div><strong>Status:</strong> <span class="status-badge status-${item.statusAC.toLowerCase()}">${item.statusAC}</span></div>
+                        </div>
+                    </div>
+                    <h4 style="color: var(--dark-slate); margin-bottom: 15px;">
+                        <i class="fas fa-clock"></i> Riwayat Perubahan (${history.length} aktivitas)
+                    </h4>
+                ` + history.map(h => {
+                    const actionIcon = h.action === 'create' ? 'plus-circle' : h.action === 'edit' ? 'edit' : h.action === 'status' ? 'sync' : 'trash';
+                    const actionColor = h.action === 'create' ? 'var(--secondary-green)' : h.action === 'edit' ? 'var(--secondary-blue)' : h.action === 'status' ? 'var(--accent-teal)' : 'var(--danger-red)';
+                    
+                    return `
+                        <div class="history-item">
+                            <div class="history-header">
+                                <div class="history-action">
+                                    <i class="fas fa-${actionIcon}" style="color: ${actionColor}; margin-right: 8px;"></i>
+                                    ${getActionText(h.action)}
+                                </div>
+                                <div class="history-date">
+                                    <i class="fas fa-calendar-alt" style="margin-right: 5px;"></i>
+                                    ${new Date(h.timestamp).toLocaleString('id-ID')}
+                                </div>
+                            </div>
+                            <div class="history-description">${h.description}</div>
+                            ${h.changes ? `<div class="history-changes"><strong>Detail Perubahan:</strong><br>${h.changes}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('historyModal').classList.add('show');
+        };
+
+        function getActionText(action) {
+            const actionTexts = {
+                'create': 'Data Dibuat',
+                'edit': 'Data Diedit',
+                'status': 'Status Diubah',
+                'delete': 'Data Dihapus'
+            };
+            return actionTexts[action] || 'Aktivitas';
+        }
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        };
+
+        window.deleteATM = function(id) {
+            if (!confirm('Yakin ingin menghapus data ATM ini?\n\nPeringatan: Tindakan ini tidak dapat dibatalkan!')) return;
+
+            const deletedItem = atmData.find(atm => atm.id === id);
+            atmData = atmData.filter(atm => atm.id !== id);
+            allData = [...atmData];
+            localStorage.setItem('atmData', JSON.stringify(atmData));
+            
+            // Add to history
+            addToHistory(id, 'delete', 'Data ATM dihapus', deletedItem);
+            
+            renderData(allData);
+            updateStats();
+            showNotification('Data ATM berhasil dihapus!', 'success');
+        };
+
+        // =============================================
+        // HISTORY MANAGEMENT
+        // =============================================
+        function addToHistory(atmId, action, description, newData, oldData = null) {
+            let changes = '';
+            
+            if (action === 'edit' && oldData) {
+                const changedFields = [];
+                const fieldLabels = {
+                    lokasi: 'Jenis Lokasi',
+                    namaKantor: 'Nama Kantor',
+                    alamat: 'Alamat',
+                    jumlahAC: 'Jumlah AC',
+                    typeFreon: 'Type Freon',
+                    statusAC: 'Status AC',
+                    keterangan: 'Keterangan'
+                };
+                
+                Object.keys(fieldLabels).forEach(key => {
+                    if (newData[key] !== oldData[key]) {
+                        const label = fieldLabels[key];
+                        const oldValue = oldData[key] || '(kosong)';
+                        const newValue = newData[key] || '(kosong)';
+                        changedFields.push(`${label}: "${oldValue}" → "${newValue}"`);
+                    }
+                });
+                changes = changedFields.join('<br>');
+            } else if (action === 'status' && oldData) {
+                changes = `Status: "${oldData.statusAC}" → "${newData.statusAC}"<br>Keterangan: ${newData.keterangan}`;
+            }
+
+            const historyEntry = {
+                id: Date.now().toString(),
+                atmId,
+                action,
+                description,
+                changes,
+                timestamp: new Date().toISOString(),
+                data: { ...newData }
+            };
+
+            historyData.push(historyEntry);
+            localStorage.setItem('historyData', JSON.stringify(historyData));
+        }
+
+        // =============================================
+        // UTILITY FUNCTIONS
+        // =============================================
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check' : 'times'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        };
+
+        // =============================================
+        // SAMPLE DATA
+        // =============================================
+        function loadSampleData() {
+            if (atmData.length === 0) {
+                const sampleData = [
+                    {
+                        id: '1',
+                        lokasi: 'Rumah ATM',
+                        namaKantor: '',
+                        alamat: 'Jl. Veteran No. 123, Makassar',
+                        jumlahAC: '1',
+                        typeFreon: 'R32',
+                        statusAC: 'Normal',
+                        keterangan: 'Kondisi baik, suhu optimal',
+                        lastChecked: '08/07/2024',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: '2',
+                        lokasi: 'Kantor Fungsional',
+                        namaKantor: 'Pettarani',
+                        alamat: 'Jl. A.P. Pettarani No. 45, Makassar',
+                        jumlahAC: '3',
+                        typeFreon: 'R410A',
+                        statusAC: 'Warning',
+                        keterangan: 'AC unit 2 suara berisik, perlu pengecekan',
+                        lastChecked: '07/07/2024',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: '3',
+                        lokasi: 'Kantor Fungsional',
+                        namaKantor: 'Samsat Mappa',
+                        alamat: 'Jl. Sultan Alauddin No. 67, Gowa',
+                        jumlahAC: '2',
+                        typeFreon: 'R22',
+                        statusAC: 'Maintenance',
+                        keterangan: 'Perlu ganti freon dan service rutin',
+                        lastChecked: '06/07/2024',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: '4',
+                        lokasi: 'Rumah ATM',
+                        namaKantor: '',
+                        alamat: 'Jl. Urip Sumoharjo No. 88, Makassar',
+                        jumlahAC: '1',
+                        typeFreon: 'R410A',
+                        statusAC: 'Normal',
+                        keterangan: 'Kondisi prima, perawatan rutin',
+                        lastChecked: '08/07/2024',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: '5',
+                        lokasi: 'Kantor Fungsional',
+                        namaKantor: 'Gubernur',
+                        alamat: 'Jl. Jenderal Sudirman No. 15, Makassar',
+                        jumlahAC: '6',
+                        typeFreon: 'Mixed',
+                        statusAC: 'Normal',
+                        keterangan: 'AC lantai 1-2: R410A, AC lantai 3: R32',
+                        lastChecked: '05/07/2024',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                
+                atmData = sampleData;
+                allData = [...atmData];
+                localStorage.setItem('atmData', JSON.stringify(atmData));
+                
+                // Add sample history
+                const sampleHistory = [
+                    {
+                        id: 'h1',
+                        atmId: '2',
+                        action: 'create',
+                        description: 'Data ATM Pettarani dibuat',
+                        changes: '',
+                        timestamp: new Date(Date.now() - 86400000 * 3).toISOString(), // 3 days ago
+                        data: sampleData[1]
+                    },
+                    {
+                        id: 'h2',
+                        atmId: '2',
+                        action: 'status',
+                        description: 'Status AC diubah ke Warning',
+                        changes: 'Status: "Normal" → "Warning"<br>Keterangan: AC unit 2 mulai bersuara berisik',
+                        timestamp: new Date(Date.now() - 86400000 * 1).toISOString(), // 1 day ago
+                        data: sampleData[1]
+                    },
+                    {
+                        id: 'h3',
+                        atmId: '3',
+                        action: 'create',
+                        description: 'Data ATM Samsat Mappa dibuat',
+                        changes: '',
+                        timestamp: new Date(Date.now() - 86400000 * 5).toISOString(), // 5 days ago
+                        data: sampleData[2]
+                    },
+                    {
+                        id: 'h4',
+                        atmId: '3',
+                        action: 'edit',
+                        description: 'Data ATM Samsat Mappa diperbarui',
+                        changes: 'Type Freon: "R410A" → "R22"<br>Keterangan: "Kondisi baik" → "Perlu ganti freon dan service rutin"',
+                        timestamp: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
+                        data: sampleData[2]
+                    },
+                    {
+                        id: 'h5',
+                        atmId: '3',
+                        action: 'status',
+                        description: 'Status AC diubah ke Maintenance',
+                        changes: 'Status: "Warning" → "Maintenance"<br>Keterangan: Freon bocor, perlu perbaikan segera',
+                        timestamp: new Date(Date.now() - 3600000 * 6).toISOString(), // 6 hours ago
+                        data: sampleData[2]
+                    }
+                ];
+                
+                historyData = sampleHistory;
+                localStorage.setItem('historyData', JSON.stringify(historyData));
+                
+                renderData(allData);
+                updateStats();
+            }
+        }
+    </script>
+</body>
+</html>
