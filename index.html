@@ -1,65 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AC Management</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-blue: #1e40af;
+            --accent-cyan: #06b6d4;
+            --success-green: #10b981;
+            --warning-yellow: #f59e0b;
+            --danger-red: #ef4444;
+            --dark-gray: #1f2937;
+            --medium-gray: #6b7280;
+            --light-gray: #f9fafb;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan), var(--success-green));
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .form-section {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            padding: 30px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .form-section h2 {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--light-gray);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success {
+            background: var(--success-green);
+            color: var(--white);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-danger {
+            background: var(--danger-red);
+            color: var(--white);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-success:hover, .btn-danger:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .data-section {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            padding: 30px;
+        }
+
+        .data-section h2 {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: var(--white);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+        }
+
+        .table-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+        }
+
+        th {
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background: var(--light-gray);
+            transition: background-color 0.3s ease;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .office-tag {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--primary-blue));
+            color: var(--white);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--medium-gray);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            color: var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+        }
+
+        .stat-card .label {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--medium-gray);
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .form-section {
+                position: static;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>AC Management System</h1>
-  </header>
-  <main>
-    <form id="acForm">
-      <h2>Input Data Unit AC</h2>
-      <label for="office">Kantor Fungsional</label>
-      <select id="office" name="office" required>
-        <option value="">Pilih Kantor</option>
-        <option>Samsat Mappa</option>
-        <option>Gubernur</option>
-        <option>Maccini</option>
-        <option>PU</option>
-        <option>Diknas</option>
-        <option>Lab Baji</option>
-        <option>Talasalapang</option>
-        <option>IPDN</option>
-        <option>RS Haji</option>
-        <option>DPRD</option>
-        <option>BKPMD</option>
-        <option>Pettarani</option>
-        <option>Balaikota</option>
-        <option>Priority</option>
-        <option>RSKD Dadi</option>
-        <option>Samsat Sudiang</option>
-      </select>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-snowflake"></i> AC Management System</h1>
+            <p>Sistem Manajemen Unit AC Terpadu</p>
+        </header>
 
-      <label for="unit">Unit AC (Multiple)</label>
-      <textarea id="unit" name="unit" placeholder="Kapasitas, Tipe Freon, Model" required></textarea>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-building" style="color: var(--primary-blue);"></i>
+                <div class="number" id="totalOffices">0</div>
+                <div class="label">Total Kantor</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-snowflake" style="color: var(--accent-cyan);"></i>
+                <div class="number" id="totalUnits">0</div>
+                <div class="label">Total Unit AC</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock" style="color: var(--success-green);"></i>
+                <div class="number" id="lastUpdate">-</div>
+                <div class="label">Terakhir Update</div>
+            </div>
+        </div>
 
-      <label for="address">Alamat</label>
-      <textarea id="address" name="address" placeholder="Masukkan alamat" required></textarea>
+        <div class="main-content">
+            <div class="form-section">
+                <h2><i class="fas fa-plus-circle"></i> Tambah Data AC</h2>
+                <form id="acForm">
+                    <div class="form-group">
+                        <label for="office">Kantor Fungsional</label>
+                        <select id="office" name="office" required>
+                            <option value="">Pilih Kantor</option>
+                            <option>Samsat Mappa</option>
+                            <option>Gubernur</option>
+                            <option>Maccini</option>
+                            <option>PU</option>
+                            <option>Diknas</option>
+                            <option>Lab Baji</option>
+                            <option>Talasalapang</option>
+                            <option>IPDN</option>
+                            <option>RS Haji</option>
+                            <option>DPRD</option>
+                            <option>BKPMD</option>
+                            <option>Pettarani</option>
+                            <option>Balaikota</option>
+                            <option>Priority</option>
+                            <option>RSKD Dadi</option>
+                            <option>Samsat Sudiang</option>
+                        </select>
+                    </div>
 
-      <button type="submit">Tambah Data</button>
-    </form>
+                    <div class="form-group">
+                        <label for="unit">Unit AC</label>
+                        <textarea id="unit" name="unit" placeholder="Contoh: 1 PK, R22, Split Wall" required></textarea>
+                    </div>
 
-    <section id="summary">
-      <h2>Summary Data</h2>
-      <input type="text" id="search" placeholder="Cari data...">
+                    <div class="form-group">
+                        <label for="address">Alamat</label>
+                        <textarea id="address" name="address" placeholder="Masukkan alamat lengkap..." required></textarea>
+                    </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Kantor</th>
-            <th>Unit AC</th>
-            <th>Alamat</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody id="summaryBody"></tbody>
-      </table>
-    </section>
-  </main>
-  <script type="module" src="script.js"></script>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan Data
+                    </button>
+                </form>
+            </div>
+
+            <div class="data-section">
+                <h2><i class="fas fa-table"></i> Data AC</h2>
+                
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Cari berdasarkan kantor, unit, atau alamat...">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-building"></i> Kantor</th>
+                                <th><i class="fas fa-snowflake"></i> Unit AC</th>
+                                <th><i class="fas fa-map-marker-alt"></i> Alamat</th>
+                                <th><i class="fas fa-cogs"></i> Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summaryBody">
+                            <tr>
+                                <td colspan="4" class="loading">
+                                    <i class="fas fa-spinner"></i> Memuat data...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase configuration
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7ss0mtX8EL0EGQRrq3-epoY5mdNW0lA0",
+            authDomain: "bssbkcu-7e51f.firebaseapp.com",
+            projectId: "bssbkcu-7e51f",
+            storageBucket: "bssbkcu-7e51f.appspot.com",
+            messagingSenderId: "753845824071",
+            appId: "1:753845824071:web:c9b742c93c9c728738df62",
+            measurementId: "G-K2C2KC5H08"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const acCollection = collection(db, "acData");
+
+        let allData = [];
+
+        // Tambah Data
+        document.getElementById("acForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+            submitBtn.disabled = true;
+
+            const office = document.getElementById("office").value;
+            const unit = document.getElementById("unit").value;
+            const address = document.getElementById("address").value;
+
+            try {
+                await addDoc(acCollection, { 
+                    office, 
+                    unit, 
+                    address, 
+                    lastUpdated: new Date().toISOString(),
+                    createdAt: new Date().toISOString()
+                });
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--success-green);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    z-index: 1000;
+                    box-shadow: var(--shadow-lg);
+                `;
+                successMsg.innerHTML = '<i class="fas fa-check"></i> Data berhasil ditambahkan!';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => successMsg.remove(), 3000);
+                
+                fetchAndRenderData();
+                this.reset();
+            } catch (error) {
+                console.error("Error menambah data:", error);
+                alert("Terjadi kesalahan saat menambah data.");
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Ambil dan Render Data
+        async function fetchAndRenderData() {
+            const tableBody = document.getElementById("summaryBody");
+            tableBody.innerHTML = '<tr><td colspan="4" class="loading"><i class="fas fa-spinner fa-spin"></i> Memuat data...</td></tr>';
+
+            try {
+                const querySnapshot = await getDocs(acCollection);
+                allData = [];
+                
+                querySnapshot.forEach((doc) => {
+                    allData.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderData(allData);
+                updateStats();
+            } catch (error) {
+                console.error("Error mengambil data:", error);
+                tableBody.innerHTML = '<tr><td colspan="4" class="empty-state"><i class="fas fa-exclamation-triangle"></i><br>Gagal memuat data</td></tr>';
+            }
+        }
+
+        function renderData(data) {
+            const tableBody = document.getElementById("summaryBody");
+            
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="empty-state">
+                            <i class="fas fa-inbox"></i><br>
+                            Belum ada data AC yang tersimpan
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = "";
+            data.forEach((item) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><span class="office-tag">${item.office}</span></td>
+                    <td>${item.unit}</td>
+                    <td>${item.address}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-success" onclick="editData('${item.id}', '${item.office}', '${item.unit.replace(/'/g, "\\'")}', '${item.address.replace(/'/g, "\\'")}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteData('${item.id}')">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateStats() {
+            const totalOffices = new Set(allData.map(item => item.office)).size;
+            const totalUnits = allData.length;
+            const lastUpdate = allData.length > 0 ? 
+                Math.max(...allData.map(item => new Date(item.lastUpdated || item.createdAt).getTime())) : 0;
+
+            document.getElementById("totalOffices").textContent = totalOffices;
+            document.getElementById("totalUnits").textContent = totalUnits;
+            document.getElementById("lastUpdate").textContent = lastUpdate > 0 ? 
+                new Date(lastUpdate).toLocaleDateString('id-ID') : '-';
+        }
+
+        // Edit Data
+        window.editData = async function(id, currentOffice, currentUnit, currentAddress) {
+            const office = prompt("Update Kantor:", currentOffice);
+            const unit = prompt("Update Unit AC:", currentUnit);
+            const address = prompt("Update Alamat:", currentAddress);
+
+            if (!office || !unit || !address) {
+                alert("Data tidak boleh kosong.");
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "acData", id);
+                await updateDoc(docRef, { 
+                    office, 
+                    unit, 
+                    address, 
+                    lastUpdated: new Date().toISOString() 
+                });
+                
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--success-green);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    z-index: 1000;
+                    box-shadow: var(--shadow-lg);
+                `;
+                successMsg.innerHTML = '<i class="fas fa-check"></i> Data berhasil diupdate!';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => successMsg.remove(), 3000);
+                
+                fetchAndRenderData();
+            } catch (error) {
+                console.error("Error mengupdate data:", error);
+                alert("Terjadi kesalahan saat mengupdate data.");
+            }
+        };
+
+        // Hapus Data
+        window.deleteData = async function(id) {
+            if (!confirm("Yakin ingin menghapus data ini?")) return;
+
+            try {
+                const docRef = doc(db, "acData", id);
+                await deleteDoc(docRef);
+                
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--danger-red);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    z-index: 1000;
+                    box-shadow: var(--shadow-lg);
+                `;
+                successMsg.innerHTML = '<i class="fas fa-trash"></i> Data berhasil dihapus!';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => successMsg.remove(), 3000);
+                
+                fetchAndRenderData();
+            } catch (error) {
+                console.error("Error menghapus data:", error);
+                alert("Terjadi kesalahan saat menghapus data.");
+            }
+        };
+
+        // Cari Data
+        document.getElementById("search").addEventListener("input", function () {
+            const searchValue = this.value.toLowerCase();
+            const filteredData = allData.filter(item => 
+                item.office.toLowerCase().includes(searchValue) ||
+                item.unit.toLowerCase().includes(searchValue) ||
+                item.address.toLowerCase().includes(searchValue)
+            );
+            renderData(filteredData);
+        });
+
+        // Load Data Saat Halaman Dibuka
+        fetchAndRenderData();
+    </script>
 </body>
 </html>
